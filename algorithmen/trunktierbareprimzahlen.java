@@ -1,6 +1,6 @@
 import java.math.BigInteger;
 
-import tools.stringprogramm;
+
 
 public class trunktierbareprimzahlen {
 
