@@ -1,7 +1,5 @@
-import java.util.Arrays;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
-
-
 
 
 public class miller_rabinson {
@@ -18,8 +16,9 @@ public class miller_rabinson {
         return result;
     }
 
+    static int[] presieved = sivesmall(10000);
+
     public static boolean composit(long p,long a, long d, int s){
-        if (sivesmall(p, 100)) return true;
         long t = powm(a, d, p);
         if(t==1||t==p-1) return false;
         for (int i = 1; i < s; i++) {
@@ -29,24 +28,44 @@ public class miller_rabinson {
         return true;
     }
 
-    public static boolean sivesmall(long p, int limit){
+    public static int[] sivesmall( int limit){
         boolean isprime[] = new boolean[limit+1];
+        ArrayList<Integer> list = new ArrayList<>();
         Arrays.fill(isprime,true);
         for (int i = 2; i*i <= limit; i++) {
             if (isprime[i]) {
-                if(p%i==0) return true;
-               for (int j = 2; j*i <= limit; j++) {
-                isprime[j*i]=false;
+               for (int j = i*i; j <= limit; j+=i) {
+                isprime[j]=false;
             }  
             }
         }
+        for (int i = 2; i <= limit; i++) {
+            if(isprime[i]) list.add(i);   
+        }
+
+        int[] primes = new int[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            primes[i] = list.get(i);
+        }
+
+        return primes;
+    }
+
+    public static boolean multofsmallp(long p){
+         for (int n : presieved) {
+            if(p%n==0) return !(p==n);
+        }
         return false;
+
     }
 
     public static boolean MillerRabinson(long p,int sertenty){
         int s = 0;
         long d = p-1;
-        while ((p&1)==0) {
+
+        if(multofsmallp(p)) return false;
+
+        while ((d&1)==0) {
             d>>=1;
             ++s;
         }
@@ -60,10 +79,11 @@ public class miller_rabinson {
 
     }
 
+
     public static void main(String[] args) {
         int s = 10;
-        long p = (long)1e9+7;
-        System.err.println("die zahl: "+p+((MillerRabinson(p, s)?" prime mit fehlerwahrscheinlichkeit: "+Math.pow(2,-2*s):"nicht prim")));
+        System.out.println(MillerRabinson((long)1e9+9, s));
+        
     }
 
 
