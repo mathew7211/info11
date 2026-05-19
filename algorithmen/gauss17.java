@@ -1,4 +1,3 @@
-package tools;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -6,7 +5,7 @@ import java.io.PrintWriter;
 
 public class gauss17 {
     public static void main(String[] args) {
-        int fp = 257;
+        int fp = 17;
         int g = 3;//primitive wurzel für alle meresen primzahlen
         int pow2 = Integer.numberOfTrailingZeros(fp-1)+1;
 
@@ -82,6 +81,24 @@ public class gauss17 {
                     }
                 }
                 products_repr[k] = sb.toString();
+
+                //minimalpolynom ausgeben
+                if (k==0) {
+                    sb.setLength(0);
+                if (const_term != 0) sb.append(const_term);
+                for (int m = 0; m < half; m++) {
+                    if (coefs[m] != 0) {
+                        if (sb.length() > 0) sb.append(" + ");
+                        if (coefs[m] == 1) {
+                            sb.append("N"+m);
+                        } else {
+                            sb.append(coefs[m]).append("N"+m);
+                        }
+
+                    }
+                }
+               System.out.println("x²-N0*x+"+sb.toString());
+                }
             }
 
             

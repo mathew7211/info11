@@ -24,7 +24,7 @@ public class trunktierbareprimzahlen {
     public static void main(String[] args) {
         generateLtrunkeble(BigInteger.valueOf(3), 1);
         generateLtrunkeble(BigInteger.valueOf(7), 1);
-        System.out.println(lenght);
+        System.out.println(lenght+1);
         System.out.println(p.toString());
 
     }
