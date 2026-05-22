@@ -6,7 +6,7 @@ import java.io.PrintWriter;
 public class gauss17 {
     public static void main(String[] args) {
         int fp = 17;
-        int g = 3;//primitive wurzel für alle meresen primzahlen
+        int g = 3;//primitive wurzel für alle fermat primzahlen >3
         int pow2 = Integer.numberOfTrailingZeros(fp-1)+1;
 
         
