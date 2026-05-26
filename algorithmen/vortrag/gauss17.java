@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 public class gauss17 {
+
+    //https://www.geogebra.org/calculator/amspktjp
+    
     public static void main(String[] args) {
         int fp = 17;
         int g = 3;//primitive wurzel für alle fermat primzahlen >3
